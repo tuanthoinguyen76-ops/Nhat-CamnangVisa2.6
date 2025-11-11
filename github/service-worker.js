@@ -1,14 +1,14 @@
 // Nhật-Visa PWA Service Worker
-const CACHE_NAME = 'nhat-visa-v1.0.1'; // Tăng version
+const CACHE_NAME = 'nhat-visa-v1.0.1';
 const RUNTIME_CACHE = 'nhat-visa-runtime';
 
+// FIXED: Removed ./github/ prefix - service worker runs from /github/ already
 const PRECACHE_URLS = [
   './',
-  './github/index.html',
-  './github/manifest.json',
-  './github/icons/icon-192x192.png',
-  './github/icons/icon-512x512.png'
-  // BỎ CDN Tailwind vì nó không cache được
+  './index.html',
+  './manifest.json',
+  './icons/icon-192x192.png',
+  './icons/icon-512x512.png'
 ];
 
 // Install event - cache essential files
@@ -80,9 +80,9 @@ self.addEventListener('fetch', (event) => {
           .catch((error) => {
             console.log('[SW] Fetch failed, serving offline page:', error);
             
-            // Return offline page for navigation requests
+            // FIXED: Return offline page for navigation requests
             if (event.request.mode === 'navigate') {
-              return caches.match('./github/index.html');
+              return caches.match('./index.html');
             }
           });
       })
@@ -115,8 +115,8 @@ self.addEventListener('push', (event) => {
   
   const options = {
     body: event.data ? event.data.text() : 'Có thông tin visa mới!',
-    icon: './github/icons/icon-192x192.png',
-    badge: './github/icons/icon-72x72.png',
+    icon: './icons/icon-192x192.png',
+    badge: './icons/icon-72x72.png',
     vibrate: [200, 100, 200],
     tag: 'visa-notification',
     actions: [
@@ -164,6 +164,4 @@ self.addEventListener('message', (event) => {
       })
     );
   }
-
 });
-
