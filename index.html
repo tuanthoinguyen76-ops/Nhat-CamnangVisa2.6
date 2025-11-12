@@ -290,18 +290,9 @@
                 installBtn.innerHTML = '<span>📲</span><span>Cài đặt ứng dụng</span>';
                 installBtn.disabled = false;
             }
-
-            deferredPrompt = null;
-        });
-
-        // Listen for app installed event
-        window.addEventListener('appinstalled', () => {
-            console.log('PWA was installed');
-            showStatus('✅ Ứng dụng đã được cài đặt thành công!', 'success');
-            installBtn.classList.add('hidden');
-            deferredPrompt = null;
-        });
-
+    deferredPrompt = null;
+});
+            
          // Detect platform
   function detectPlatform() {
     const ua = navigator.userAgent.toLowerCase();
@@ -358,6 +349,17 @@
         3. App sẽ mở trong cửa sổ riêng!
       `
     };
+
+
+        // Listen for app installed event
+        window.addEventListener('appinstalled', () => {
+            console.log('PWA was installed');
+            showStatus('✅ Ứng dụng đã được cài đặt thành công!', 'success');
+            installBtn.classList.add('hidden');
+            deferredPrompt = null;
+        });
+
+
         // Register service worker
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', async () => {
@@ -380,6 +382,7 @@
     </script>
 </body>
 </html>
+
 
 
 
