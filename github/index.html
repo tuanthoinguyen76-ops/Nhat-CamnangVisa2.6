@@ -753,8 +753,8 @@
     <button onclick="sendQuickQuestion('Hồ sơ tài chính visa Pháp cần gì?')">
       💰 Hồ sơ tài chính
     </button>
-    <button onclick="sendQuickQuestion('Visa Nhật cần bao nhiêu tiền?')">
-      💴 Chi phí visa
+    <button onclick="sendQuickQuestion('Xin Visa cần tài chính bao nhiêu?')">
+      💴 Tài chính để xin Visa
     </button>
     <button onclick="sendQuickQuestion('Thời gian xét duyệt visa Mỹ?')">
       ⏱️ Thời gian xét duyệt
@@ -8924,7 +8924,7 @@ function processAIQuery(query) {
   // Search for specific information
   if (lowerQuery.includes('hồ sơ') || lowerQuery.includes('giấy tờ') || lowerQuery.includes('cần gì')) {
     handleDocumentQuery(detectedCountry, lowerQuery);
-  } else if (lowerQuery.includes('tài chính') || lowerQuery.includes('tiền') || lowerQuery.includes('chi phí')) {
+  } else if (lowerQuery.includes('tài chính') || lowerQuery.includes('tiền') || lowerQuery.includes('tài chính')) {
     handleFinancialQuery(detectedCountry);
   } else if (lowerQuery.includes('thời gian') || lowerQuery.includes('xét duyệt') || lowerQuery.includes('bao lâu')) {
     handleTimeQuery(detectedCountry);
